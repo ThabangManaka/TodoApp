@@ -1,0 +1,21 @@
+.circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ion-icon {
+  font-size: 24px; /* Adjust the icon size */
+  //color: #fff; /* Adjust the icon color */
+}
+.selected {
+  border: 2px solid #000;
+}
+.center-list{
+  display: flex;
+  justify-content: center;
+}

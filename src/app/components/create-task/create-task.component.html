@@ -1,0 +1,91 @@
+<ion-content>
+  <div class="container margin-space">
+    <ion-label style="font-weight: 800 ; text-align: center;">Create New Task</ion-label>
+
+ 
+    <div close="close-icon" (click)="dismissModal()">
+      <ion-icon  name="close"></ion-icon>
+    </div>
+  </div>
+  <app-icon-selection (iconSelected)="onIconSelected($event)"></app-icon-selection>
+  
+
+  <form [formGroup]="todoForm" (ngSubmit)="onSubmit()">
+    <ion-card>
+      <ion-item>
+       <ion-input placeholder="Enter The Task Name" formControlName="Title"></ion-input>
+      </ion-item>
+     </ion-card>
+
+     <ion-card>
+      <ion-item>
+       <ion-textarea rows="5" placeholder="Enter The Description" formControlName="Description"></ion-textarea>
+      </ion-item>
+     </ion-card>
+
+     <ion-card>
+      <ion-item>
+        <ion-select label="Task Priority" placeholder="No Priority" formControlName="Priority">
+          <ion-select-option *ngFor="let p of priority " [value]="p">{{p}}</ion-select-option>
+  
+        </ion-select>
+      </ion-item>
+    </ion-card>
+
+  
+
+     <ion-card>
+      <ion-list lines="inset">
+
+        <ion-item >
+          <ion-label>Day</ion-label>
+        <ion-datetime-button datetime="datetime"></ion-datetime-button>
+        <ion-icon name="calendar-outline" slot="end"></ion-icon>
+        </ion-item>
+        <ion-item >
+          <ion-label>Start</ion-label>
+           <ion-datetime-button  datetime="startTime"  displayFormat="h:mm"></ion-datetime-button>
+           <ion-icon name="time" slot="end" ></ion-icon>
+       </ion-item>
+       <ion-item >
+        <ion-label>End</ion-label>
+         <ion-datetime-button  datetime="endTime"  displayFormat="h:mm"></ion-datetime-button>
+         <ion-icon name="time" slot="end"></ion-icon>
+     </ion-item>
+    </ion-list>
+   </ion-card>
+
+    <ion-modal [keepContentsMounted]="true">
+      <ng-template>
+        <ion-datetime  [presentation]="'date'"id="datetime"  formControlName="setDate"></ion-datetime>
+      </ng-template>
+    </ion-modal>
+  
+    
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+           <ion-datetime [presentation]="'time'" id="startTime" formControlName="startTime" [showDefaultButtons]="false"></ion-datetime>
+        </ng-template>
+       </ion-modal>
+    
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+         <ion-datetime [presentation]="'time'" id="endTime" formControlName="endTime" [showDefaultButtons]="false"  >
+         </ion-datetime>
+        </ng-template>
+    
+           </ion-modal>
+
+           <ion-card>
+            <app-color-selection (colorSelected)="onColorSelected($event)"></app-color-selection>
+           </ion-card>
+          
+         <div class="button">
+            <ion-button  expand="block" size="large" type="submit">
+             <ion-text><strong>Submit</strong></ion-text>
+            </ion-button>
+           </div>
+       </form>
+
+
+</ion-content>

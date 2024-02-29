@@ -1,0 +1,15 @@
+<ion-list line="none" class="center-list">
+<ion-item>
+  <ion-row>
+    <ion-col>
+
+    <div class="circle" *ngFor ="let color of colors" 
+    [style.background-color]="color"
+    (click)="selectColor(color)"
+    [class.selected]="selectedColor === color">
+
+    </div>
+    </ion-col>
+    </ion-row>
+</ion-item>
+</ion-list>

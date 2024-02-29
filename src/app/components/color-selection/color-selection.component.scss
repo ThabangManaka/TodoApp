@@ -1,0 +1,15 @@
+.circle {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  margin: 5px;
+  display: inline-block;
+}
+
+.center-list{
+  display:flex;
+  justify-content: center;
+}
+.selected {
+  border: 2px solid #000;
+}
