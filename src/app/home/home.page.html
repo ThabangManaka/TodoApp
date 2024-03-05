@@ -1,7 +1,42 @@
 
 <ion-content [fullscreen]="true">
+  <div align="center"  class="ion-margin-top">
+    <ion-datetime class="stylebg" presentation="date" min="2024"></ion-datetime>
+   </div>
+  <ion-list *ngFor = "let item of todoList">
 
-<ion-fab horizontal="end" vertical="bottom" >
+    <ion-card [style.background-color]="item.value.Color">
+      <div class="container" >
+        <div class="icon-button" (click)=" presentModal(item)">
+        <ion-icon [name]="item.value.Icon" size="large"></ion-icon>
+        </div>
+
+        <div class="detail" (click)=" presentModal(item)">
+
+          <p>{{convertDateTimeToTime(item.value.startTime)}} - {{convertDateTimeToTime(item.value.endTime)}}
+          ({{calculateTimeDifference(item.value.startTime,item.value.endTime)}})
+          </p>
+          <h2>{{item.value.Title}}</h2>
+          <p>{{item.value.Description}}</p>
+
+            <div *ngIf="item.value.Priority === 'High'" class="priority">
+                    <ion-chip><p ><ion-icon name="flag"  color="danger"></ion-icon></p></ion-chip>
+                  </div>
+                  <div *ngIf="item.value.Priority === 'Medium'" class="priority">
+                    <ion-chip ><p ><ion-icon name="flag"  color="warning"></ion-icon></p></ion-chip>
+                  </div>
+                  <div *ngIf="item.value.Priority === 'Low'" class="priority">
+                    <ion-chip><p ><ion-icon name="flag"  color="tertiary"></ion-icon></p></ion-chip>
+           </div>
+        </div>
+        <div class="circle">
+
+        </div>
+      </div>
+    </ion-card>
+  </ion-list>
+
+<ion-fab horizontal="end" vertical="bottom" slot="fixed">
   <ion-fab-button (click)="addTask()">
     <ion-icon name="add"></ion-icon>
   </ion-fab-button>

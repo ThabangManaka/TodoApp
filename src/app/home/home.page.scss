@@ -1,27 +1,63 @@
-#container {
-  text-align: center;
+ion-content{
+  --background:#f0f0f2;
+}
+ion-datetime.stylebg{
+  --background:#e6e6fa;
+    --border-color: #800080 !important;
+    width: 120%;
+  }
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+ion-card{
+
+  //opacity: 50%;
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .icon-button  {
+    align-self: flex-start;
+
+  
+   ion-icon{
+    margin: 5px !important;
+   }
+  }
+  .detail {
+    flex-grow: 1; /* Allow this div to grow and occupy remaining space */
+    margin:  10px; /* Add margins for spacing */
+  }
+  .detail h2,
+  .detail p {
+    margin: 0; /* Remove default margins */
+  }
+  .close-icon {
+    cursor: pointer;
+  }
+  .close-icon {
+    width: 40px; /* Adjust the size of the circle */
+    height: 40px;
+    background-color: #ccc; /* Gray background color */
+    border-radius: 50%; /* Create a circle shape */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .circle {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin: 8px;
+    border: 2px solid gray;
+    display: inline-block;
+  }
+  .center-div {
+    display: flex;
+    align-items: center;
+    justify-content:flex-end;
+  }
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
+h2{
+  color: #000;
 }

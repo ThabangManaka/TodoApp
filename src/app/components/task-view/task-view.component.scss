@@ -1,0 +1,53 @@
+.top-container
+{
+display:flex;
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.mb-5{
+  margin:10px;
+}
+.button-box  {
+
+
+  ion-buttob{
+  background-color: #fff !important;
+  }
+
+ // border: none;
+ // cursor: pointer;
+}
+
+.detail {
+  flex-grow: 1; /* Allow this div to grow and occupy remaining space */
+  margin:  10px; /* Add margins for spacing */
+}
+.detail h2,
+.detail p {
+  margin: 0; /* Remove default margins */
+}
+.close-icon {
+  cursor: pointer;
+}
+.close-icon {
+  margin:5px;
+  width: 40px; /* Adjust the size of the circle */
+  height: 40px;
+  background-color: #ccc; /* Gray background color */
+  border-radius: 50%; /* Create a circle shape */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-circle ion-icon {
+  font-size: 24px; /* Adjust the icon size */
+}
+.horizontal-line {
+  margin: 20px 0; /* Adjust margin as needed */
+  border: none;
+  border-top: 1px solid #ccc; /* Color and style of the horizontal line */
+}
