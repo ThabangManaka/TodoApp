@@ -1,12 +1,13 @@
 import { Injectable, resolveForwardRef } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class TodoService {
-
+  tasksChanged = new Subject<void>(); 
+  
   constructor(private storage : Storage) { 
    this.init();
   }
@@ -16,8 +17,11 @@ async init() {
 
 
 addTask(key:any, value: any){
+  
   return this.storage.set(key,value)
 } 
+
+
 getAllTask() {
   let tasks: any =[];
   var promise = new Promise((resolve, reject)=> {

@@ -17,19 +17,19 @@
   <hr class="horizontal-line">
   <ion-card>
     <ion-list>
-      <ion-item>
+      <ion-item (click)="onDuplicate(this.taskData.data)">
         <ion-label>Duplicate </ion-label>
         <ion-icon name="duplicate-outline"></ion-icon>
       </ion-item>
       <ion-item>
-        <ion-label>Task Complete</ion-label>
+        <ion-label (click)="onComplete()">Task Complete</ion-label>
         <ion-icon name="checkmark-circle-outline"></ion-icon>
       </ion-item>
       <ion-item (click)="onMissed()">
         <ion-label>Task Missed</ion-label>
         <ion-icon name="close-circle-outline"></ion-icon>
       </ion-item>
-      <ion-item>
+      <ion-item  (click)="onEdit(this.taskData.data)">
         <ion-label>Edit Task</ion-label>
         <ion-icon name="create-outline"></ion-icon>
       </ion-item>
@@ -38,7 +38,7 @@
   </ion-card>
 
   <ion-card>
-    <ion-item  (click)="onDelete()" >
+    <ion-item  (click)="presentAlertDelete()" >
       <ion-label color="danger">Delete Task</ion-label>
       <ion-icon color="danger" name="trash-outline"></ion-icon>
     </ion-item>

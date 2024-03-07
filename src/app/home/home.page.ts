@@ -31,7 +31,7 @@ export class HomePage {
       this.todoService.getAllTask().then((val) =>{
 
         this.todoList = val;
-
+            console.log(val);
         this.loadingCtrl.dismiss();
       });
     })
@@ -97,6 +97,13 @@ export class HomePage {
         },
         cssClass: "taskViewmodal"
       })
+        
+      modal.onDidDismiss().then((data) =>{
+        if(data && data.data && data.data.deleted){
+          this.loadData();
+        }
+      })
+    
       return await modal.present();
     }
     

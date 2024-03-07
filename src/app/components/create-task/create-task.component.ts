@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup,FormControl } from '@angular/forms';
-import { ModalController, ToastController } from '@ionic/angular';
+import { FormGroup,FormControl, FormBuilder } from '@angular/forms';
+import { ModalController, NavParams, ToastController } from '@ionic/angular';
 import { TodoService } from 'src/app/services/todo.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { TodoService } from 'src/app/services/todo.service';
   templateUrl: './create-task.component.html',
   styleUrls: ['./create-task.component.scss'],
 })
-export class CreateTaskComponent   {
+export class CreateTaskComponent implements OnInit   {
 
   priority = ['High','Medium','Low'];
   currentDate : string;
@@ -25,12 +25,49 @@ export class CreateTaskComponent   {
     Color: new FormControl(''),
    Icon: new FormControl(''),
   })
+
+
+   myForm: FormGroup;
   constructor(private modalCtrl: ModalController,
     private toastCtrl : ToastController,
-    private todoService : TodoService) { }
+    private todoService : TodoService,
+    private navParams : NavParams,
+    private formBuilder : FormBuilder
+    ) { }
 
 
+ngOnInit() {
+const formData = this.navParams.get('data');
 
+
+if(formData){
+  this.myForm = this.formBuilder.group({
+    setDate: [new Date(formData.value.setDate).toISOString()],
+    startTime: [new Date(formData.value.startTime).toISOString()],
+    endTime: [new Date(formData.value.endTime).toISOString()],
+    Title: [formData.value.Title],
+    Priority: [formData.value.Priority],
+    Description: [formData.value.Description],
+    Icon: [formData.value.Icon],
+    Color: [formData.value.Color],
+  
+  })
+  
+}else {
+  this.myForm =  this.formBuilder.group({
+    setDate: [new Date().toISOString()],
+    startTime: [new Date().toISOString()],
+    endTime: [new Date().toISOString()],
+  Title: [''],
+  Priority: [''],
+  Description: [''],
+  Icon: [''],
+  Color:[''],
+  TaskStatus:['']
+  })
+}
+
+}
   dismissModal(){
     this.modalCtrl.dismiss();
   
@@ -52,17 +89,32 @@ export class CreateTaskComponent   {
   }
 
   onSubmit(){
- this.currentDate = (new Date()).toISOString();
- let uid = this.currentDate + this.todoForm.value.Title;
- this.todoForm.value.Color = this.selectedColor;
- this.todoForm.value.Icon = this.selectedIcon;
- this.todoService.addTask(uid,this.todoForm.value).then(data =>{
-  console.log(data)
 
-  this.presentToast("Task Added Succesfully!");
+    const formData = this.navParams.get('data');
 
-  this.modalCtrl.dismiss();
- })
+    if(formData && formData.key) {
+      this.myForm.value.Color = this.selectedColor;
+      this.myForm.value.Icon = this.selectedIcon;
+      this.todoService.addTask(formData.key,this.myForm.value).then(data => {
+        this.presentToast("Task Updated Succesfully!");
+        this.modalCtrl.dismiss();
+      })
+    }else {
+      this.currentDate = (new Date()).toISOString();
+      let uid = this.currentDate + this.myForm.value.Title;
+      this.myForm.value.Color = this.selectedColor;
+      this.myForm.value.Icon = this.selectedIcon;
+      this.todoService.addTask(uid,this.myForm.value).then(data =>{
+       console.log(data)
+     
+       this.presentToast("Task Added Succesfully!");
+     
+       this.modalCtrl.dismiss();
+      })
+    
+    }
+   
+
   }
 
 

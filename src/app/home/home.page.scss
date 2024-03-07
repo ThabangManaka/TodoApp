@@ -43,13 +43,19 @@ ion-card{
     justify-content: center;
     align-items: center;
   }
+  .circle-box{
+    margin: 8px;
+  ion-icon{
+    font-size:30px;
+  }
+  }
   .circle {
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    margin: 8px;
+   
     border: 2px solid gray;
-    display: inline-block;
+ 
   }
   .center-div {
     display: flex;

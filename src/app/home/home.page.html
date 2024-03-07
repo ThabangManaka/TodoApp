@@ -29,10 +29,16 @@
                     <ion-chip><p ><ion-icon name="flag"  color="tertiary"></ion-icon></p></ion-chip>
            </div>
         </div>
-        <div class="circle">
-
-        </div>
-      </div>
+        <div class="circle-box">
+          <div class="circle" *ngIf="item.value.TaskStatus === ''">  </div>
+          <div  *ngIf="item.value.TaskStatus === 'Complete'">
+            <ion-icon name="checkmark-circle" color="success"> </ion-icon> </div>
+            <div  *ngIf="item.value.TaskStatus === 'Incomplete'">
+              <ion-icon name="close-circle" color="danger"> </ion-icon> </div>
+            </div>
+          </div>
+        
+    
     </ion-card>
   </ion-list>
 

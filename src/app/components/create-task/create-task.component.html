@@ -10,7 +10,7 @@
   <app-icon-selection (iconSelected)="onIconSelected($event)"></app-icon-selection>
   
 
-  <form [formGroup]="todoForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
     <ion-card>
       <ion-item>
        <ion-input placeholder="Enter The Task Name" formControlName="Title"></ion-input>
